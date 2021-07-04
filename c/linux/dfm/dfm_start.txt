@@ -1,0 +1,25 @@
+# 1 "dfm_start.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 1 "<command-line>" 2
+# 1 "dfm_start.c"
+# 12 "dfm_start.c"
+typedef struct {
+   int descriptor;
+   int run_number;
+} odb_obj_desc_struc;
+
+
+
+
+
+
+__attribute__ ((visibility("default"))) int valor_analysis_surf (void); 
+int valor_analysis_surf (void) {
+    static odb_obj_desc_struc layer_list = {-1, -1};
+    static odb_obj_desc_struc layer = {-1, -1};
+}
+
+
+

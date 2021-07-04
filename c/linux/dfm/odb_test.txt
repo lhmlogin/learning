@@ -1,0 +1,113 @@
+# 1 "odb_test.c"
+# 1 "<built-in>"
+# 1 "<command-line>"
+# 1 "/usr/include/stdc-predef.h" 1 3 4
+# 1 "<command-line>" 2
+# 1 "odb_test.c"
+# 9 "odb_test.c"
+typedef char odb_name[64 +1];
+
+typedef char odb_layer_def[2047 +1];
+typedef char odb_function_def[260];
+typedef char odb_detch_setup_filename[260];
+
+typedef odb_layer_def odb_param_layer;
+typedef int odb_param_int;
+typedef double odb_param_double;
+typedef int odb_param_p_inch;
+typedef int odb_param_p_mil;
+typedef int odb_param_opt;
+typedef char odb_param_string[255 +1];
+typedef odb_function_def odb_param_function;
+# 54 "odb_test.c"
+typedef struct {
+    char *name;
+    char *addr;
+} odb_prog_params;
+
+typedef struct {
+   char *name;
+   char *title;
+   char *description;
+} odb_categories;
+
+static odb_param_layer pp_layer = ".affected";
+static odb_param_p_mil pp_small = (((5) * (10160))>=0 ? (int)(((5) * (10160))+0.5) : (int)(((5) * (10160))-0.5));
+static odb_param_opt pp_small_mode = 0x0002;
+static odb_param_p_mil pp_max_fold_length = 0;
+static odb_param_p_mil pp_small_edge_length = 0;
+
+static odb_prog_params params [] = {
+    "pp_layer",pp_layer,
+    "pp_small",&pp_small,
+    "pp_small_mode",&pp_small_mode,
+    "pp_max_fold_length",&pp_max_fold_length,
+    "pp_small_edge_length",&pp_small_edge_length
+};
+
+
+typedef enum {
+    C_SELFINTERSECTION_IN_SURFACE = 0,
+    C_SELFINTERSECTION_IN_SYMBOL,
+    C_PROBLEMATIC_SURFACE,
+    C_WRONG_NESTING_ISLAND,
+    C_WRONG_NESTING_HOLE,
+    C_SMALL_POLY,
+    C_SMALL_POLY_SYM,
+
+
+
+
+
+
+    C_FOLD,
+    C_FOLD_SYM,
+    C_SMALL_EDGE,
+    C_SMALL_EDGE_SYM,
+    C_WRONG_ORDER_OF_HOLE_ISLAND,
+    C_CATEGORY_NUM
+} category_enum;
+
+
+
+static odb_categories categories[] = {
+    "selfintersection_in_surface", "Self-intersection in surface", "surface",
+    "selfintersection_in_symbol", "Self-intersection in symbol", "symbol",
+    "problematic_surface", "Problematic surface", "surface",
+    "wrong_nesting_island", "Wrong nesting for island", "surface",
+    "wrong_nesting_hole", "Wrong nesting for hole", "surface",
+    "small_poly", "Small Polygon", "surface",
+    "small_poly_sym", "Small Polygon in symbol", "symbol",
+
+
+
+
+
+
+    "fold", "Fold", "surface",
+    "fold_sym", "Fold in symbol", "symbol",
+    "small_edge", "Small edge in surface", "surface",
+    "small_edge_sym", "Small edge in symbol", "symbol",
+    "wrong_order_of_hole_island", "Wrong order of hole/island", "surface"
+};
+
+
+
+
+
+int main(void) {
+# 140 "odb_test.c"
+    printf("%s\n",params[0].name);
+    printf("%p\n",params[0].addr);
+    printf("%s\n",params[0].addr);
+    printf("%s\n",params[1].name);
+
+    int * p;
+    p = params[1].addr;
+
+    printf("%d\n",*p);
+    printf("%d\n",(int)*params[1].addr);
+    printf("%s\n",params[2].name);
+    printf("%d\n",*params[2].addr);
+
+}
