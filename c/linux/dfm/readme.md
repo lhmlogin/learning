@@ -1,10 +1,16 @@
 gcc -o main main.c -lsurf -L./bin -Wl,-rpath=./bin
 gcc -o main main_simple.c -l:surf.so -L./bin -Wl,-rpath=./bin
-gcc -o main main.c -ldl -rdynamic
+
 gcc -shared -o ./bin/libsurf.so surf.c -fPIC
 gcc -shared -o ./bin/surf.so surf.c -fPIC
 gcc surf.c -c -fPIC -o surf.o
 ld surf.o -shared ./internal_func.so -o surf.so
+
+
+###编译生成动态加载主函数，并且map所有函数到程序空间
+gcc -o main main.c -ldl -rdynamic
+
+The -rdynamic option puts all symbols in the dynamic symbol table (which is mapped into memory), not only the names of the used symbols. Read further about it here. Of course you can also provide function pointers (or a struct of function pointers) that define the interface between the library and your main program. It's actually the method what i would choose probably. I heard from other people that it's not so easy to do -rdynamic in windows, and it also would make for a cleaner communication between library and main program (you've got precise control on what can be called and not), but it also requires more house-keeping.
 
 
 gcc -shared lib_attr.c -o ./lib_attr.so -fPIC -I ../inc
@@ -45,7 +51,7 @@ ld balance.o -L ./lib/o/ --gc-sections -shared /frontline/incam/release/bin/prog
 ###list so symbol names.
 nm -D <So file name>
 
-The -rdynamic option puts all symbols in the dynamic symbol table (which is mapped into memory), not only the names of the used symbols. Read further about it here. Of course you can also provide function pointers (or a struct of function pointers) that define the interface between the library and your main program. It's actually the method what i would choose probably. I heard from other people that it's not so easy to do -rdynamic in windows, and it also would make for a cleaner communication between library and main program (you've got precise control on what can be called and not), but it also requires more house-keeping.
+
 
 
 
